@@ -6,6 +6,7 @@ import os
 
 from config import FRAMEWORK, OS, BROWSER, HEADLESS
 
+#py .\src\parser_exec_time_aggregate_each_phase_all_tests.py 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 REPORT = os.path.join(current_dir, "..", "data/input", "report.json")
 OUTPUT = os.path.join(current_dir, "..", "data/output", f"parser_exec_time_aggregate_each_phase_all_tests_{FRAMEWORK}_{OS}_{BROWSER}_{HEADLESS}.json") 

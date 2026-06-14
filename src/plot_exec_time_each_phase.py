@@ -8,6 +8,7 @@ matplotlib.use("Agg")   # non-GUI backend (CI / Windows-safe)
 
 import matplotlib.pyplot as plt
 
+# py .\src\plot_exec_time_each_phase.py
 current_dir = os.path.dirname(os.path.abspath(__file__))
 REPORT = os.path.join(current_dir, "..", "data/output", f"parser_exec_time_get_all_tests_{FRAMEWORK}_{OS}_{BROWSER}_{HEADLESS}.json")
 

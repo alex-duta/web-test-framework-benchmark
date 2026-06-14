@@ -9,17 +9,18 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-OS = "Linux"
+OS = "Windows"
 BROWSER = "Chrome"
 HEADLESS = "true"
-OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_exec_time_{OS}_{BROWSER}_{HEADLESS}.png")
 
-# read the report.json files for both frameworks based on file names and paths provided
-# selenium_report_path_win = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,selenium,chrome,headless-report/report.json")
-# playwright_report_path_win = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,playwright,chrome,headless-report/report.json")
-
-selenium_report_path_linux = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,selenium,chrome,headless-report/report.json")
-playwright_report_path_linux = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,playwright,chrome,headless-report/report.json")
+if OS == "Windows":
+    OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_exec_time_{OS}_{BROWSER}_{HEADLESS}.png")
+    selenium_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,selenium,chrome,headless-report/report.json")
+    playwright_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,playwright,chrome,headless-report/report.json")
+else:
+    OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_exec_time_{OS}_{BROWSER}_{HEADLESS}.png")
+    selenium_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,selenium,chrome,headless-report/report.json")
+    playwright_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,playwright,chrome,headless-report/report.json")
 
 # use "duration"
 def get_total_execution_time(report_path):
@@ -32,8 +33,11 @@ def get_total_execution_time(report_path):
     total_time = float(data.get("duration", 0.0))
     return total_time
 
-selenium_total = get_total_execution_time(selenium_report_path_linux)
-playwright_total = get_total_execution_time(playwright_report_path_linux)
+# selenium_total = get_total_execution_time(selenium_report_path_linux)
+# playwright_total = get_total_execution_time(playwright_report_path_linux)
+
+selenium_total = get_total_execution_time(selenium_report_path)
+playwright_total = get_total_execution_time(playwright_report_path)
 
 # Plotting 
 labels = ['Selenium', 'Playwright']

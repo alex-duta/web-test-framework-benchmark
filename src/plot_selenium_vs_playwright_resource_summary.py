@@ -12,7 +12,7 @@ matplotlib.use("Agg")   # non-GUI backend (CI / Windows-safe)
 import matplotlib.pyplot as plt
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-OS = "Windows"
+OS = "Linux"
 BROWSER = "Chrome"
 HEADLESS = "true"
 OUTPUT_CPU = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_resource_summary_cpu_{OS}_{BROWSER}_{HEADLESS}.png")

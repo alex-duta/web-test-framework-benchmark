@@ -9,17 +9,18 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-OS = "Linux"
+OS = "Windows"
 BROWSER = "Chrome"
 HEADLESS = "true"
-OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_pass_rate_{OS}_{BROWSER}_{HEADLESS}.png")
 
-# read the report.json files for both frameworks based on file names and paths provided
-# selenium_report_path_win = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,selenium,chrome,headless-report/report.json")
-# playwright_report_path_win = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,playwright,chrome,headless-report/report.json")
-
-selenium_report_path_linux = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,selenium,chrome,headless-report/report.json")
-playwright_report_path_linux = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,playwright,chrome,headless-report/report.json")
+if OS == "Windows":
+    OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_pass_rate_{OS}_{BROWSER}_{HEADLESS}.png")
+    selenium_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,selenium,chrome,headless-report/report.json")
+    playwright_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,playwright,chrome,headless-report/report.json")
+else:
+    OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_pass_rate_{OS}_{BROWSER}_{HEADLESS}.png")
+    selenium_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,selenium,chrome,headless-report/report.json")
+    playwright_report_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,playwright,chrome,headless-report/report.json")
 
 def get_test_count(report_path):
     if not os.path.exists(report_path):
@@ -32,8 +33,8 @@ def get_test_count(report_path):
     total = summary.get("total", 0)
     return passed, total
 
-selenium_passed, selenium_test_count = get_test_count(selenium_report_path_linux)
-playwright_passed, playwright_test_count = get_test_count(playwright_report_path_linux)
+selenium_passed, selenium_test_count = get_test_count(selenium_report_path)
+playwright_passed, playwright_test_count = get_test_count(playwright_report_path)
 
 selenium_pass_rate = (selenium_passed / selenium_test_count * 100) if selenium_test_count > 0 else 0
 playwright_pass_rate = (playwright_passed / playwright_test_count * 100) if playwright_test_count > 0 else 0

@@ -23,14 +23,23 @@ Parsing and plotting of test results. It extracts raw data from JSON reports (e.
     ```bash
     pip install -r requirements.txt
     ```
--   **Parse report:**
+-   **Parse report (linux & windows for each browser and framework):**
     ```bash
-    py .\scripts\parse_all_tests_metrics.py  
+    py .\src\parser_exec_time_aggregate_each_phase_all_tests.py
+    py .\src\parser_exec_time_get_all_tests.py 
     ```
--   **Generate plot:**
+-   **Generate plot(linux & windows for each browser and framework):**
     ```bash
-    py .\scripts\plot_status_and_exec_time.py  
+    py .\src\plot_exec_time_each_phase.py
+    py .\src\plot_exec_time_total.py  
     ```
+
+-   **Generate plot(copy 01 win,playwright,chrome,headless-report and 02 linux,playwright,chrome,headless-report to output\selenium_vs_playwright, same for selenium and run command to generate plots:):**
+  ```bash
+  py .\src\plot_selenium_vs_playwright_exec_time.py   
+  py .\src\plot_selenium_vs_playwright_pass_rate.py 
+  py .\src\plot_selenium_vs_playwright_resource_summary.py
+  ```
 
 # Data flows
 
@@ -40,7 +49,7 @@ Test Repo (eg. selenium-python-framework), run tests
   report.json (artifact)
     ↓ 
 Test Metrics Analyzer, run parsers and plotters modules
-  copy artifact in data\input\ e.g. data\input\report.json
+  copy artifacts in data\input\ e.g. data\input\report.json and resource_summary.csv
     ↓
   parser_exec_time_get_all_tests.py
     ↓
