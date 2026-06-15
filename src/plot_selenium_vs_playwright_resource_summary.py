@@ -1,10 +1,5 @@
 # Genrate a bar plot comparing Selenium and Playwright resource summary for the same OS and browser configurations
 
-# data\output\selenium_vs_playwright\01 win,selenium,chrome,headless-report\resource_summary.csv
-# data\output\selenium_vs_playwright\01 win,playwright,chrome,headless-report\resource_summary.csv
-# data\output\selenium_vs_playwright\02 linux,selenium,chrome,headless-report\resource_summary.csv
-# data\output\selenium_vs_playwright\02 linux,playwright,chrome,headless-report\resource_summary.csv
-
 import os
 import matplotlib
 
@@ -12,14 +7,21 @@ matplotlib.use("Agg")   # non-GUI backend (CI / Windows-safe)
 import matplotlib.pyplot as plt
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-OS = "Linux"
+OS = "Windows"
 BROWSER = "Chrome"
 HEADLESS = "true"
+
+if OS == "Windows":
+    OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_resource_summary_{OS}_{BROWSER}_{HEADLESS}.png")
+    selenium_resource_summary_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,selenium,chrome,headless-report/resource_summary.csv")
+    playwright_resource_summary_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,playwright,chrome,headless-report/resource_summary.csv")
+else:
+    OUTPUT = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_resource_summary_{OS}_{BROWSER}_{HEADLESS}.png")
+    selenium_resource_summary_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,selenium,chrome,headless-report/resource_summary.csv")
+    playwright_resource_summary_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/02 linux,playwright,chrome,headless-report/resource_summary.csv")
 OUTPUT_CPU = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_resource_summary_cpu_{OS}_{BROWSER}_{HEADLESS}.png")
 OUTPUT_MEM = os.path.join(current_dir, "..", "plots", f"plot_selenium_vs_playwright_resource_summary_mem_{OS}_{BROWSER}_{HEADLESS}.png")
 
-selenium_resource_summary_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,selenium,chrome,headless-report/resource_summary.csv")
-playwright_resource_summary_path = os.path.join(current_dir, "..", "data/output/selenium_vs_playwright/01 win,playwright,chrome,headless-report/resource_summary.csv")
 def parse_resource_summary(file_path):
     if not os.path.exists(file_path):
         print(f"Warning: Resource summary file not found: {file_path}")
