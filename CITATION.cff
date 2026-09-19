@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Test Metrics Analyzer: Measurement and Analysis Scripts"
+authors:
+  - family-names: "Duță"
+    given-names: "Alexandru"
+    affiliation: "Technical University of Cluj-Napoca"
+repository-code: "https://github.com/alexduta-tech/test-metrics-analyzer"
+license: Apache-2.0
