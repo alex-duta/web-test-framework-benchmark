@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Runs a measurement series with the Selenium and Playwright test frameworks and archives the
-# results of every session. See the README of test-metrics-analyzer for the full instructions.
+# results of every session. See the README of web-test-framework-benchmark for the full instructions.
 #
 # What the script does, for each browser given on the command line:
 #   1. one warm-up session per framework (archived under warmup/, excluded from the analysis);
@@ -10,7 +10,7 @@
 # After every session, the reports are moved from <repo>/reports/ into an archive folder, and a
 # one-line summary (passed/failed, mean suite time) is printed.
 #
-# Usage:  [VARIABLE=value ...] scripts/run_measurements.sh [browser ...]
+# Usage:  [VARIABLE=value ...] comparative_evaluation_selenium_playwright/run_measurements.sh [browser ...]
 #         browsers: chrome, edge, firefox (default: all three)
 #
 # Settings (environment variables):
@@ -19,7 +19,7 @@
 #   MODE             local = tests run on this machine (Windows only)
 #                    docker = tests run in the framework containers            (default local)
 #   FRAMEWORKS_ROOT  folder that contains both framework repositories
-#                    (default: the folder that contains test-metrics-analyzer)
+#                    (default: the folder that contains web-test-framework-benchmark)
 #   APP_URL          address of the application under test          (default http://localhost:3000/)
 #   SESSIONS         measured sessions per browser and framework               (default 5)
 #   REPS             suite repetitions per session                              (default 10)
@@ -47,7 +47,7 @@ export MSYS_NO_PATHCONV=1
 native_pwd() { pwd -W 2>/dev/null || pwd; }
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && native_pwd)"
-DEFAULT_ROOT="$(cd "$(dirname "$0")/../.." && native_pwd)"   # the folder that contains test-metrics-analyzer
+DEFAULT_ROOT="$(cd "$(dirname "$0")/../.." && native_pwd)"   # the folder that contains web-test-framework-benchmark
 ROOT="${FRAMEWORKS_ROOT:-$DEFAULT_ROOT}"
 RUN_FOLDER=${RUN_FOLDER:?set RUN_FOLDER to the name of the measurement series, e.g. RUN_FOLDER=series_01}
 RUN_SET=${RUN_SET:-50runs}

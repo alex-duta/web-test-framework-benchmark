@@ -1,6 +1,6 @@
 # Statistics output
 
-`py src\compute_statistics.py` writes `data\output\<run folder>_statistics.csv`, with one row per comparison. This file explains what is compared and what each column means.
+`py comparative_evaluation_selenium_playwright\compute_statistics.py` writes `data\output\<run folder>_statistics.csv`, with one row per comparison. This file explains what is compared and what each column means.
 
 ## What is compared
 

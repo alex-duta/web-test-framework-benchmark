@@ -4,7 +4,7 @@ Outputs (in data/output/):
     <run folder>_repetitions.csv  one row per suite repetition: durations and outcome
     <run folder>_resources.csv    one row per suite repetition: CPU and memory
 
-Usage:  py src\\parse_reports.py
+Usage:  py comparative_evaluation_selenium_playwright\\parse_reports.py
 """
 import csv
 import json

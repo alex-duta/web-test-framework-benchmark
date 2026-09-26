@@ -5,7 +5,7 @@ mean, SD, median, 95% CI, the Mann-Whitney U p-value and the Vargha-Delaney A12
 effect size. Writes them to data/output/<run folder>_statistics.csv (see STATISTICS.md)
 and prints a summary.
 
-Usage:  py src\\compute_statistics.py
+Usage:  py comparative_evaluation_selenium_playwright\\compute_statistics.py
 """
 import csv
 import statistics as st

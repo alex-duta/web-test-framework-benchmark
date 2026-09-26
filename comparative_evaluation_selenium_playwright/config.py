@@ -6,7 +6,7 @@ Results of a configuration are either directly in that folder (single session) o
 ``session_01 ... session_NN`` subfolders. ``warmup`` subfolders and any ``superseded``
 folder are excluded from the analysis.
 
-Two settings come from environment variables, the same ones scripts/run_measurements.sh uses:
+Two settings come from environment variables, the same ones run_measurements.sh uses:
 
     RUN_FOLDER       measurement series under reports/runs/ (required)
     FRAMEWORKS_ROOT  folder that contains selenium-python-framework and playwright-python-framework
