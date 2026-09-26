@@ -53,7 +53,7 @@ The script stops, rather than continuing with incomplete data, if:
 1. **Install both frameworks.**
    - For `MODE=local`: set up each framework's `.venv` as described in its README.
    - For `MODE=docker`: start each framework's container (`run_selenium_docker.bat` / `run_playwright_docker.bat`, or `docker compose up -d`).
-2. **Start the application set up for the matching mode:** for local execution with `MODE=local`, for Docker execution with `MODE=docker` (in automation-lab, `run_frontend_backend.bat` asks which one; see its README). With the wrong setup, the tests cannot reach the application's backend.
+2. **Start the application set up for the matching mode:** for local execution with `MODE=local`, for Docker execution with `MODE=docker` (in automation-lab, `run_frontend_backend.bat` on Windows or `run_frontend_backend.sh` on Linux and macOS asks which one; see its README). With the wrong setup, the tests cannot reach the application's backend.
 3. **Empty the `reports/` folders:** in both framework repositories, `reports/` must contain nothing except `runs/`.
 4. **Keep the machine idle:** close browsers and other programs, and pause updates.
 
@@ -103,10 +103,10 @@ RUN_FOLDER=series_01 RUN_SET=50runs MODE=local SESSIONS=5 REPS=10 comparative_ev
 RUN_FOLDER=series_01 RUN_SET=50runs_resources MODE=local SESSIONS=5 REPS=10 MONITOR=true comparative_evaluation_selenium_playwright/run_measurements.sh chrome
 ```
 
-**B. Tests in Docker (`MODE=docker`).** First restart automation-lab set up for Docker execution: in automation-lab, run `run_frontend_backend.bat` and answer **N**. On Linux and macOS, only this mode is available.
+**B. Tests in Docker (`MODE=docker`).** First restart automation-lab set up for Docker execution: in automation-lab, run `run_frontend_backend.bat` (Windows) or `run_frontend_backend.sh` (Linux, macOS) and answer **N**. On Linux and macOS, only this mode is available.
 
 ```bash
-# automation-lab must be set up for DOCKER execution (run_frontend_backend.bat, answer N)
+# automation-lab must be set up for DOCKER execution (run_frontend_backend.bat or .sh, answer N)
 
 # 1. Quick check, both frameworks
 RUN_FOLDER=trial RUN_SET=1run MODE=docker SESSIONS=1 REPS=1 WARMUP_REPS=0 comparative_evaluation_selenium_playwright/run_measurements.sh chrome
@@ -169,6 +169,10 @@ What is analysed:
 - Repetitions that contain a failed test are excluded from the statistics and listed by `parse_reports.py`.
 
 Other settings, such as the run sets and the resource sampling interval, are in [config.py](config.py).
+
+## Published data
+
+The measurement series `01_comparative_evaluation` is attached as a zip archive to [release v1.0](https://github.com/alex-duta/web-test-framework-benchmark/releases/tag/v1.0) of this repository. Unzip it into the repository folder and run the analysis with `RUN_FOLDER=01_comparative_evaluation` and `FRAMEWORKS_ROOT` set to its `data\input` folder. The README inside the archive describes the contents and the steps.
 
 ## Troubleshooting
 
